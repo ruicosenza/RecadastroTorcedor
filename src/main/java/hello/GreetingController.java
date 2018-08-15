@@ -32,12 +32,12 @@ public class GreetingController {
     @RequestMapping( value = "/", produces = (MediaType.APPLICATION_JSON_VALUE))
     public ResponseEntity<Socio[]> testando(){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Socio[]> forEntity = restTemplate.getForEntity("http://localhost:8080/teste", Socio[].class);
+        ResponseEntity<Socio[]> forEntity = restTemplate.getForEntity("http://localhost:8080/getSocio", Socio[].class);
 
         Socio[] socios = forEntity.getBody();
 
         for (int i = 0; i < socios.length; i++) {
-            System.out.println(socios[i].getNome());
+            System.out.println(socios[i].getNomeSocio());
         }
 
         return forEntity;
