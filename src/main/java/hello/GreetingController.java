@@ -29,15 +29,16 @@ public class GreetingController {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 
-    @RequestMapping( value = "/", produces = (MediaType.APPLICATION_JSON_VALUE))
-    public ResponseEntity<Socio[]> testando(){
+    @RequestMapping( value = "/getSocio", produces = (MediaType.APPLICATION_JSON_VALUE))
+    public ResponseEntity<Socio[]> testando(@RequestParam(value="name") String name){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Socio[]> forEntity = restTemplate.getForEntity("http://localhost:8080/getSocio", Socio[].class);
+        //name = "Rui Gomes Cosenza";
+        ResponseEntity<Socio[]> forEntity = restTemplate.getForEntity("http://localhost:8080/getSocio/" + name, Socio[].class);
 
         Socio[] socios = forEntity.getBody();
 
         for (int i = 0; i < socios.length; i++) {
-            System.out.println(socios[i].getNomeSocio());
+            System.out.println(socios[i].getNome());
         }
 
         return forEntity;

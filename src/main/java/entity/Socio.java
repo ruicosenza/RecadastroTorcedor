@@ -3,7 +3,7 @@ package entity;
 public class Socio {
 
     private Long id;
-    private String nomeSocio;
+    private String nome;
     private String matricula;
     private String cpf;
 
@@ -15,12 +15,12 @@ public class Socio {
         this.id = id;
     }
 
-    public String getNomeSocio() {
-        return nomeSocio;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeSocio(String nomeSocio) {
-        this.nomeSocio = nomeSocio;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getMatricula() {
@@ -41,6 +41,6 @@ public class Socio {
 
     @Override
     public String toString() {
-        return "Socio{" + "id=" + id + ", nomeSocio='" + nomeSocio + '\'' + ", matricula='" + matricula + '\'' + ", cpf='" + cpf + '\'' + '}';
+        return "Socio{" + "id=" + id + ", nome='" + nome + '\'' + ", matricula='" + matricula + '\'' + ", cpf='" + cpf + '\'' + '}';
     }
 }
