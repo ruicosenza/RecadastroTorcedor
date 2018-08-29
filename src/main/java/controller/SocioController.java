@@ -20,6 +20,6 @@ public class SocioController {
 
         HttpEntity<Socio> entity = new HttpEntity<>(socio, headers);
 
-        return restTemplate.postForEntity("http://localhost:8080/getSocio", entity, Socio[].class);
+        return restTemplate.postForEntity("http://localhost:8090/getSocio", entity, Socio[].class);
     }
 }
