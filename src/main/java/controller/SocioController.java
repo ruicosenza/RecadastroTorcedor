@@ -1,24 +1,25 @@
 package controller;
 
-import entity.Socio;
+import models.Socio;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class SocioController {
 
-    @RequestMapping( value = "/getSocio", produces = (MediaType.APPLICATION_JSON_VALUE))
-    public ResponseEntity<Socio[]> getSocio(@RequestParam(value="nome") String nome, @RequestParam(value="cpf") String cpf, @RequestParam(value="matricula") String matricula){
+    @RequestMapping( value = "/getSocio", method = RequestMethod.POST)
+    public ResponseEntity<Socio[]> getSocio(@RequestBody Socio socio){
         RestTemplate restTemplate = new RestTemplate();
 
-        String params = "nome=" + nome + "&cpf=" + cpf + "&matricula=" + matricula;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-        ResponseEntity<Socio[]> forEntity = restTemplate.getForEntity("http://localhost:8080/getSocio?" + params, Socio[].class);
+        HttpEntity<Socio> entity = new HttpEntity<>(socio, headers);
 
-        return forEntity;
+        return restTemplate.postForEntity("http://localhost:8080/getSocio", entity, Socio[].class);
     }
 }
