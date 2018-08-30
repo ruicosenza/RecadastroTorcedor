@@ -7,6 +7,8 @@ public class Socio {
     private String matricula;
     private String cpf;
 
+    public Socio(){}
+
     public Long getId() {
         return id;
     }
